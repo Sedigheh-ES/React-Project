@@ -6,15 +6,34 @@ const config: Config = {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
-  theme: {
+ theme: { 
     extend: {
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      fontFamily: {
+        quickSand:["Quicksand", "sans-serif"],
       },
+      colors:{
+       'cc-new':'#f0e8d5',
+       'hero-font':'#253D4E',
+       'hero-bg':'#F4F4F4',
+       'third':'#f0e8d5',
+       'sec':'#f3e8e8',
+       'forth':'#e7eaf3',
+       'btnCol':'#fdc040'
+      },
+      width: {
+        '128': '700px',
+      },
+      backgroundImage: {
+        'hero-pattern': "url('./src/img/bg-hero.png')",     
     },
+
+      
+    variants: {},
+    plugins: {
+    tailwindcss: { config: './tailwindcss-config.js' },
   },
+  },
+},
   plugins: [],
 };
 export default config;
