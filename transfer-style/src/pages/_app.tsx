@@ -1,4 +1,5 @@
 import "@/styles/globals.css";
+import "@/styles/icon.css";
 
 import {Layout} from "@/components";
 
