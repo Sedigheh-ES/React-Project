@@ -1,9 +1,11 @@
 import { IconBox } from "@/components/common";
 import { browseCategroiesMock } from '@/mock/browsCategory';
+import { menuMock } from '@/mock/menu';
 
 import Link from "next/link";
 
 export function Menu() {
+    // TODO Load Menu Data From API
     return ( 
 
         <>
@@ -26,10 +28,28 @@ export function Menu() {
                 </div>
               </div>
             </div>
-          </div>
+            </div>
+            
+
           <nav id="main_menu">
-            <ul className="flex flex-col lg:flex-row items-start lg:items-center text-heading6 lg:text-heading-sm 2xl:text-heading6 gap-[32px] mt-[32px] lg:mt-0 lg:gap-3 xl:gap-5 2xl:gap-10">
-              <li>
+                <ul className="flex flex-col lg:flex-row items-start lg:items-center text-heading6 lg:text-heading-sm 2xl:text-heading6 gap-[32px] mt-[32px] lg:mt-0 lg:gap-3 xl:gap-5 2xl:gap-10">
+                    {
+                        menuMock.map((item, index) => {
+                            return (
+                                <li>
+                                    {
+                                        item.icon ?
+                                            <IconBox {...item} size={24} />
+                                            :
+                                            <Link href={item.link} className="flex flex-row gap-2 items-center">{item.title}</Link>
+                                    }
+                                </li>
+                            );
+                            
+                        })
+                    }
+
+              {/* <li>
                 <Link href="#" className="flex flex-row gap-2 items-center">
                   <i className="icon-flame text-[24px]"></i>
                   <div className="text-heading6 lg:text-heading-sm xl:text-heading6">Hot Deals</div>
@@ -43,7 +63,7 @@ export function Menu() {
               </li>
               <li>
                 <Link href="#" className="flex flex-row">Vegetables</Link>
-              </li>
+              </li> */}
             </ul>
           </nav></>
             

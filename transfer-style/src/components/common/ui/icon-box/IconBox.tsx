@@ -21,7 +21,7 @@ export function IconBox({ icon, size = 22, link, title, HideTitleOnMobile = fals
     }
 
     return (
-        <Link className={linkClassName} href={link ?? '#'}>
+        <Link className={`flex  items-center  cursor-pointer gap-x-1 ${linkClassName}`} href={link ?? '#'}>
             {
                 badge ?
                       <div className="relative">
