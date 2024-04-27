@@ -14,7 +14,7 @@ export function Menu() {
                   <IconBox  linkClassName={"flex items-ceneter gap-x-2"}  icon={"icon-apps"} size={24}  HideTitleOnMobile={true} link={'#'} title={"Browse All Categories"} />   
                  <IconBox linkClassName={"flex items-ceneter gap-x-1"}  icon={"icon-angle-small-down"} size={24} HideTitleOnMobile={true} link={'#'} />  
                 
-            <div id="all_categories_box" className=" absolute z-20 bg-white left-0 top-16 w-[500px] rounded-[5px] border-[1px] border-green-300 p-[30px] hover:cursor-default">
+            <div id="all_categories_box" className="hidden absolute z-20 bg-white left-0 top-16 w-[500px] rounded-[5px] border-[1px] border-green-300 p-[30px] hover:cursor-default">
                     <div id="all_cat_inner_box" className="flex flex-wrap justify-between gap-y-[15px]">
                         {
                        browseCategroiesMock.map((item,index) => {
