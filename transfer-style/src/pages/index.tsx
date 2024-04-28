@@ -1,9 +1,10 @@
+import { Section } from "@/components";
 
 export default function Home() {
   
   return (
-    <>
-      <div></div>
-    </>   
+   
+    <Section>lskfjlasdjfalsdf</Section>
+     
   );
 }

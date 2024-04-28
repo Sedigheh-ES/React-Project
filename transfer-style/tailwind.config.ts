@@ -17,12 +17,12 @@ const config: Config = {
         'c-lg': '14px 14px 36px 0px rgba(85, 85, 85, 0.22)'
       },
       backgroundImage: {
-        'hero-pattern': "url('../../images/banner_bg.png')",
-        'hero-img': "url('../../images/hero-img.png')"
+        'hero-pattern': "url('/assests/images/banner_bg.png')",
+        'hero-img': "url('/assests/images/hero-img.png')"
       },
       fontFamily: {
-        quickSand: ['Quicksand', 'sans-serif'],
-        lato: ['Lato', 'sans-serif']
+        
+        lato:['var(--font-lato)']
       },
       fontSize: {
         display1: [
