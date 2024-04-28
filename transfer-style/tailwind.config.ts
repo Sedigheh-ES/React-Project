@@ -16,10 +16,10 @@ const config: Config = {
         c: '14px 14px 36px 0px rgba(85, 85, 85, 0.1)',
         'c-lg': '14px 14px 36px 0px rgba(85, 85, 85, 0.22)'
       },
-      backgroundImage: {
-        'hero-pattern': "url('/assests/images/banner_bg.png')",
-        'hero-img': "url('/assests/images/hero-img.png')"
-      },
+      // backgroundImage: {
+      //   'hero-pattern': "url('/assests/images/banner_bg.png')",
+      //   'hero-img': "url('/assests/images/hero-img.png')"
+      // },
       fontFamily: {
         
         lato:['var(--font-lato)']

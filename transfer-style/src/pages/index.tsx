@@ -1,10 +1,17 @@
-import { Section } from "@/components";
+import { Banner, Section } from "@/components";
 
 export default function Home() {
   
   return (
    
-    <Section>lskfjlasdjfalsdf</Section>
+    <Section>
+      <Banner
+        title={"Dont miss amazing grocery deals"}
+        subtitle={"Sign up for the daily newsletter"}
+        image={"/assets/images/fresh-apples.png"}
+        bgImage={"/assets/images/banner_bg.png"}
+      />
+    </Section>
      
   );
 }
