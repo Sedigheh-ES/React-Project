@@ -1,4 +1,4 @@
-import { Banner, FeaturedCategories, Section } from "@/components";
+import { Banner, FeaturedCategories, MiniProductSlider, Section } from "@/components";
 
 export default function Home() {
   
@@ -19,7 +19,11 @@ export default function Home() {
         </div>
         <FeaturedCategories/>
         
-    </Section>
+      </Section>
+      
+      <Section>
+        <MiniProductSlider/>
+      </Section>
      </>
   );
 }
