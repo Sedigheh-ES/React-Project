@@ -1,14 +1,15 @@
-export const popularFruits = [
+export const BestSellers = [
     {
-        title: "Angie’s Boomchickapop Sweet & Salty Kettle Corn",
-        image: '/assets/images/products/tanjerin.png',
+        title: "All Natural Italian-Style Chicken Meatballs",
+        image: '/assets/images/products/hamburger.png',
         category: "Hodo Foods",
-        rate: 1.0,
+        rate: 4.0,
         weight: 500,
         unit: 'gram',
-        price: 3000,
-        sale_price: 200,
+        price: 11111,
         label: 'Hot',
+        sold: 10,
+        total: 120,
     },
     {
         title: "All Natural Italian-Style Chicken Meatballs",
@@ -17,19 +18,23 @@ export const popularFruits = [
         rate: 4.0,
         weight: 500,
         unit: 'gram',
-        price: 3000,
-        sale_price: 200,
-        label: 'sale',
+        price: 4000,
+        label: 'Hot',
+        sold: 120,
+        total: 220,
     },
     {
-        title: "Seeds of Change Organic Quinoa, Brown, & Red Rice",
-        image: '/assets/images/products/cucumber.png',
+        title: "Angie’s Boomchickapop Sweet & Salty Kettle Corn",
+        image: '/assets/images/products/tanjerin.png',
         category: "Hodo Foods",
         rate: 4.0,
         weight: 500,
         unit: 'gram',
-        price: 3000,
-        sale_price:200,
+        price: 2500,
+        sale_price: 240,
+        label: 'Sale',
+        sold: 60,
+        total: 120,
     },
     {
         title: "Foster Farms Takeout Crispy Classic Buffalo Wings",
@@ -39,10 +44,10 @@ export const popularFruits = [
         weight: 500,
         unit: 'gram',
         price: 3000,
-        sale_price: 100,
-        
-      
-    
+        sale_price: 200,
+        label: 'Hot',
+        sold: 90,
+        total: 120,
     },
     {
         title: "Blue Diamond Almonds Lightly Salted Vegetables",
@@ -54,10 +59,12 @@ export const popularFruits = [
         price: 3000,
         sale_price: 200,
         label: 'Hot',
+        sold: 90,
+        total: 120,
     },
     {
         title: "Seeds of Change Organic Quinoa, Brown, & Red Rice",
-        image: '/assets/images/products/mango.png',
+        image: '/assets/images/products/cucumber.png',
         category: "Hodo Foods",
         rate: 4.0,
         weight: 500,
@@ -65,6 +72,7 @@ export const popularFruits = [
         price: 3000,
         sale_price: 200,
         label: 'Hot',
-
+        sold: 90,
+        total: 120,
     }
 ];

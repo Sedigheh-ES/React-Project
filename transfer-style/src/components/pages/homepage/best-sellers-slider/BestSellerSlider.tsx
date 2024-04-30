@@ -1,32 +1,24 @@
-import { Autoplay,Navigation } from "swiper/modules";
+import { SimpleProductCard } from "@/components/common";
+import { Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { MiniProductSlider } from "@/components/pages";
-import { miniProductSlider } from "@/mock/miniProductSlider";
-import Link from "next/link";
-import { IconBox } from "../../ui";
-import { SimpleProductCard } from "../product-card";
-import next from "next";
+
 
 interface Props{
   sliderData: Array<any>;
-  nextEl?: string;
-  prevEl?: string;
+  
 }
 
 
-export function SimpleProductSlider({sliderData,nextEl,prevEl}:Props) {
+
+export function BestSellerSlider({sliderData}:Props) {
   return (
+    <>
     <Swiper
            spaceBetween={16}
             slidesPerView={2}
-            autoplay={false}
-           
-            modules={[Autoplay, Navigation]}
-            navigation={{
-              nextEl:nextEl,
-              prevEl:prevEl
-
-      }}
+            autoplay={true}     
+            modules={[Autoplay]}
+            
       breakpoints={
         {
           768: {
@@ -36,16 +28,9 @@ export function SimpleProductSlider({sliderData,nextEl,prevEl}:Props) {
           1024: {
             slidesPerView: 4,
             spaceBetween: 22
-          },
-          1280: {
-            slidesPerView: 5,
-            spaceBetween: 24
           }
         }
-  }
-
-        
-      
+      }     
         >
             
             {
@@ -58,8 +43,12 @@ export function SimpleProductSlider({sliderData,nextEl,prevEl}:Props) {
                     );
                 })
             }
-            </Swiper>
+      </Swiper>
+      
+      </>
       
     );
-}
+};
+
+
 
