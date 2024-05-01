@@ -2,8 +2,6 @@ import { Autoplay,Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { MiniProductSlider } from "@/components/pages";
 import { miniProductSlider } from "@/mock/miniProductSlider";
-import Link from "next/link";
-import { IconBox } from "../../ui";
 import { SimpleProductCard } from "../product-card";
 import next from "next";
 

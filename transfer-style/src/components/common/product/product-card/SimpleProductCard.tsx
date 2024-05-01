@@ -72,7 +72,7 @@ export function SimpleProductCard({ data }: Props) {
                   <div className="mt-2.5 font-lato text-blue-300 text-xsmall">Sold: {data.sold}/{data.total}</div>
                   <div className="mt-[23px]">
                     <button className="flex justify-center items-center gap-2 xl:text-heading-sm text-white border-[1px] w-full rounded-[4px] bg-green-200 hover:bg-yellow-100 px-2 py-2 lg:py-[14px]">
-                <i className="icon-shopping-cart text-[22px]"></i>
+             
                 <IconBox icon={"icon-shopping-cart"} size={22} />
                       <span className="text-heading-sm">Add To Card</span>
                     </button>

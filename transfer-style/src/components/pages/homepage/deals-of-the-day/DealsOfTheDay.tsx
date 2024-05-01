@@ -1,16 +1,14 @@
 import { SimpleProductCard } from "@/components/common";
+import { PropductDealCards } from "@/components/common/";
 import { Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from 'swiper/react';
-
 
 interface Props{
   sliderData: Array<any>;
   
 }
 
-
-
-export function BestSellerSlider({sliderData}:Props) {
+export function DealsOfTheDay({sliderData}:Props) {
   return (
     <>
     <Swiper
@@ -37,7 +35,7 @@ export function BestSellerSlider({sliderData}:Props) {
               sliderData.map((sliderData,index) => {
                     return (
                         <SwiperSlide key={index} >
-                        <SimpleProductCard data={sliderData} />
+                        <PropductDealCards data={sliderData}/>
                         </SwiperSlide>
                         
                     );
@@ -49,6 +47,4 @@ export function BestSellerSlider({sliderData}:Props) {
       
      );
 };
-
-
 

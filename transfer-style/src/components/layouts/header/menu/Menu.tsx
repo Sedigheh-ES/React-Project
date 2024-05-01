@@ -49,21 +49,7 @@ export function Menu() {
                         })
                     }
 
-              {/* <li>
-                <Link href="#" className="flex flex-row gap-2 items-center">
-                  <i className="icon-flame text-[24px]"></i>
-                  <div className="text-heading6 lg:text-heading-sm xl:text-heading6">Hot Deals</div>
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="flex items-center gap-1">Home</Link>
-              </li>
-              <li>
-                <Link href="#" className="flex flex-row">Food</Link>
-              </li>
-              <li>
-                <Link href="#" className="flex flex-row">Vegetables</Link>
-              </li> */}
+            
             </ul>
           </nav></>
             
