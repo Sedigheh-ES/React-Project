@@ -5,11 +5,11 @@ interface Props{
     children: React.ReactNode;
 }
 
-export function Section({className = '',children}:Props) {
+export function Section({ className = '', children }:Props) {
   return (
-      <section className={ twMerge(`container mb-[68px]`,className)}>
+      <section className={twMerge(`container mb-[68px]`,className)}>
           {children}
-    </section>
+     </section>
   )
 };
 

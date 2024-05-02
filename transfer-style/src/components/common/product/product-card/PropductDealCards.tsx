@@ -16,11 +16,12 @@ interface Props {
     price: number;
     sale_price: number;
     label: string;
-    dead_line: string;
+    dead_line: string
   }
 }
  
 export function PropductDealCards({ data }: Props) {
+  console.log(data.dead_line);
  
   const [remainTime, setRemainTime] = useState(
     {
@@ -33,6 +34,8 @@ export function PropductDealCards({ data }: Props) {
   useEffect(() => {
     const interval=setInterval(() => {
       const timerObj = timerHelper(data.dead_line);
+      console.log(data.dead_line);
+      console.log(timerObj);
       setRemainTime(timerObj);
      
     }, 1000);
@@ -48,13 +51,13 @@ export function PropductDealCards({ data }: Props) {
                 <div className="absolute z-[20] left-[50%] translate-x-[-50%] top-[195px]">
                   <div className="timer1 flex items-center gap-3 h-[60px]">
                     <div className="bg-white rounded-[6px] h-full aspect-square text-center">
-            <div className="day text-green-200 font-bold text-[28px] leading-[38px]">{remainTime.days}</div>
+             <div className="day text-green-200 font-bold text-[28px] leading-[38px]">{remainTime.days}</div>
                       <div className="font-lato text-gray-500 text-small">Days</div>
-                    </div>
+                      </div>
                     <div className="bg-white rounded-[6px] h-full aspect-square text-center">
             <div className="hour text-green-200 font-bold text-[28px] leading-[38px]">{remainTime.hours}</div>
                       <div className="font-lato text-gray-500 text-small">Hours</div>
-                    </div>
+                      </div>
                     <div className="bg-white rounded-[6px] h-full aspect-square text-center">
                       <div className="minute text-green-200 font-bold text-[28px] leading-[38px]">{remainTime.minutes}</div>
                       <div className="font-lato text-gray-500 text-small">Mins</div>

@@ -23,7 +23,8 @@ export function IconBox({ icon, size = 22, link, title, HideTitleOnMobile = fals
 
     if (Link) {
         return (
-            <Link className={`flex  items-center  cursor-pointer gap-x-1 ${linkClassName}`} href={link ?? '#'}>
+            
+            <div className={`flex  items-center  cursor-pointer gap-x-1 ${linkClassName}`} href={link ?? '#'}>
                 {
                     badge ?
                         <div className="relative">
@@ -36,8 +37,9 @@ export function IconBox({ icon, size = 22, link, title, HideTitleOnMobile = fals
                 }
                 {title && <div className={`${HideTitleOnMobile ? ' hidden xl:inline-block ' : ' inline-block '} ${titleClassName}`}>{title}</div>}
             
-            </Link>
-        );
+            </div>
+                );
+            
     }
     else
     {

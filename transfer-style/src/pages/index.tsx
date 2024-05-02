@@ -1,9 +1,11 @@
 import { Banner, BestSellerSlider, DealsOfTheDay, FeaturedCategories, IconBox, MiniProductSlider, Section, SimpleProductCard, SimpleProductSlider } from "@/components";
 import { PropductDealCards } from "@/components/common/product/product-card/PropductDealCards";
+import { BottomSlider } from "@/components/pages/homepage/bottom-slider";
 import { BestSellers } from "@/mock/bestSellers";
 import { DealsOfTheDaysMock } from "@/mock/DealsOfTheDayMock";
 import { popularFruits } from "@/mock/popularFruits";
 import { popularProducts } from "@/mock/popularProduct";
+import { TopSellingMock } from "@/mock/TopSelling";
 import Link from "next/link";
 
 
@@ -78,7 +80,12 @@ export default function Home() {
           </Link>
         </div>
       <DealsOfTheDay sliderData={DealsOfTheDaysMock} />
-        </Section>
+      </Section>
+      
+      <Section>
+        
+        <BottomSlider sliderData={TopSellingMock}/>
+      </Section>
      
      </>
   );

@@ -1,8 +1,14 @@
-export const timerHelper = (end:string) => {
-    const endDate = new Date(end).getTime();
-    const currentDate = new Date().getTime();
 
-    const timeRemaining = endDate - currentDate;
+export const timerHelper = (end:string) => {
+  console.log(end);
+  const endDate = new Date(end).getTime();
+    console.log("end Date", endDate);
+  const currentDate = new Date().getTime();
+
+  console.log(currentDate);
+
+  const timeRemaining = endDate - currentDate;
+  console.log(timeRemaining);
 
     const timeobj = {
       days: 0,
