@@ -1,11 +1,16 @@
+import { getMenuApiCall } from "@/api/Menu";
 import { IconBox } from "@/components/common";
 import { browseCategroiesMock } from '@/mock/browsCategory';
 import { menuMock } from '@/mock/menu';
+import { useQuery } from "@tanstack/react-query";
 
 import Link from "next/link";
 
 export function Menu() {
-    // TODO Load Menu Data From API
+  // TODO Load Menu Data From API
+  const { data: menuData } = useQuery({ queryKey: [getMenuApiCall.name], queryFn: () => getMenuApiCall() });
+  console.log('Menu Datta', menuData);
+  
     return ( 
 
         <>

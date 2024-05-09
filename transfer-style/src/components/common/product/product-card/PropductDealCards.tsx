@@ -21,7 +21,7 @@ interface Props {
 }
  
 export function PropductDealCards({ data }: Props) {
-  console.log(data.dead_line);
+ 
  
   const [remainTime, setRemainTime] = useState(
     {
@@ -34,8 +34,6 @@ export function PropductDealCards({ data }: Props) {
   useEffect(() => {
     const interval=setInterval(() => {
       const timerObj = timerHelper(data.dead_line);
-      console.log(data.dead_line);
-      console.log(timerObj);
       setRemainTime(timerObj);
      
     }, 1000);
