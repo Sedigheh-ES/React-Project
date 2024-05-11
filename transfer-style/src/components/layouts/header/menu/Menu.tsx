@@ -2,14 +2,38 @@ import { getMenuApiCall } from "@/api/Menu";
 import { IconBox } from "@/components/common";
 import { browseCategroiesMock } from '@/mock/browsCategory';
 import { menuMock } from '@/mock/menu';
+import { EntityType, MenuItemType, MenuType, PopulateType } from "@/types";
 import { useQuery } from "@tanstack/react-query";
 
 import Link from "next/link";
 
 export function Menu() {
-  // TODO Load Menu Data From API
+  //TODO Load Menu Data From API
   const { data: menuData } = useQuery({ queryKey: [getMenuApiCall.name], queryFn: () => getMenuApiCall() });
   console.log('Menu Datta', menuData);
+
+  let mainMenuItem: null | PopulateType<MenuType>= null;
+
+  if (menuData) {
+    const findMenu = menuData.data.filter((item :EntityType<MenuType> ) => item.attributes.position === 'main_menu')
+    // console.log(findMenu);
+    if (findMenu.length > 0) {
+  
+      mainMenuItem = findMenu[0].attributes.menu_items;
+      mainMenuItem?.data.sort((a: EntityType<MenuItemType>, b: EntityType<MenuItemType>) => {
+        if (a.attributes.rank < b.attributes.rank)
+          return -1;
+
+        if (a.attributes.rank > b.attributes.rank)
+          return 1;
+
+        return 0;
+        
+      })
+     }
+    
+  }
+
   
     return ( 
 
@@ -37,26 +61,30 @@ export function Menu() {
             
 
           <nav id="main_menu">
-                <ul className="flex flex-col lg:flex-row items-start lg:items-center text-heading6 lg:text-heading-sm 2xl:text-heading6 gap-[32px] mt-[32px] lg:mt-0 lg:gap-3 xl:gap-5 2xl:gap-10">
-                    {
-                        menuMock.map((item, index) => {
-                            return (
-                                <li>
-                                    {
-                                        item.icon ?
-                                            <IconBox {...item} size={24} />
-                                            :
-                                            <Link href={item.link} className="flex flex-row gap-2 items-center">{item.title}</Link>
-                                    }
-                                </li>
-                            );
-                            
-                        })
-                    }
+         <ul className="flex flex-col lg:flex-row items-start lg:items-center text-heading6 lg:text-heading-sm 2xl:text-heading6 gap-[32px] mt-[32px] lg:mt-0 lg:gap-3 xl:gap-5 2xl:gap-10">
+            {     
+              mainMenuItem &&
+              mainMenuItem.data.map((item: EntityType<MenuItemType>,index:number) => {
+                
+                return (<li key={index}>
+                  {
+                    item.attributes.icon_name ?
+                      <IconBox link={item.attributes.link} icon={item.attributes.icon_name} title={item.attributes.title} size={24} />
+                      :
+                      <Link href={item.attributes.link} className="flex flex-row gap-2 items-center">{item.attributes.title}</Link>
+                  }
+                </li>);
+
+              })
+
+
+             }
+                      
 
             
             </ul>
-          </nav></>
+        </nav>
+      </>
             
 
             );

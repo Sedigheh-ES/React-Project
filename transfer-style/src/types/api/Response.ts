@@ -11,7 +11,7 @@ export interface EntityType<T> {
 
 
 export interface PopulateType<T> {
-  data: [Array<EntityType<T>>]
+  data: Array<EntityType<T>>
 }
 
 
