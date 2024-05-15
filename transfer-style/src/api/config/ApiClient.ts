@@ -33,6 +33,6 @@ apiClient.interceptors.response.use(function (response) {
             toast.error('خطایی رخ داده');
         }
     }
-    return promise.reject(error);
+    return  Promise.reject(error);
 
 })

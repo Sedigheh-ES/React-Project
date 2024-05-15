@@ -8,9 +8,14 @@ interface Props{
     className?:string
 
 }
-export function ImageView({ src,alt, width, height, className = '' }:Props) {
-    return ( 
-        <Image className={ className} src={src} alt={alt }  width={width} height={height}/>
-          );
+export function ImageView({ src, alt, width, height, className = '' }: Props) {
+    const isRemote = src.substring(0, 8) === '/uploads';
+    if(src.length > 0)
+    return (
+        <Image className={className} src={`${isRemote ? 'https://nest.navaxcollege.com' + src : src}`} alt={alt }  width={width} height={height}/>
+    )
+    else return (
+        <Image className={className} src={'/assets/images/Logo.png'} alt={'No Image'}  width={width} height={height}/>
+    )
 }
 
