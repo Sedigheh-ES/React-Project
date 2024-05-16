@@ -4,9 +4,11 @@ import { MiniProductSlider } from "@/components/pages";
 import { miniProductSlider } from "@/mock/miniProductSlider";
 import { SimpleProductCard } from "../product-card";
 import next from "next";
+import { EntityType } from "@/types";
+import { ProductType } from "@/types/api/Product";
 
 interface Props{
-  sliderData: Array<any>;
+  sliderData: Array<EntityType<ProductType>>;
   nextEl?: string;
   prevEl?: string;
 }

@@ -1,3 +1,4 @@
+import { getAllProductApiCall } from "@/api/Product";
 import { Banner, BestSellerSlider, DealsOfTheDay, FeaturedCategories, IconBox, MiniProductSlider, Section, SimpleProductCard, SimpleProductSlider } from "@/components";
 import { PropductDealCards } from "@/components/common/product/product-card/PropductDealCards";
 import { BottomSlider } from "@/components/pages/homepage/bottom-slider";
@@ -6,11 +7,24 @@ import { DealsOfTheDaysMock } from "@/mock/DealsOfTheDayMock";
 import { popularFruits } from "@/mock/popularFruits";
 import { popularProducts } from "@/mock/popularProduct";
 import { TopSellingMock } from "@/mock/TopSelling";
+import { ApiResponseType } from "@/types";
+import { ProductType } from "@/types/api/Product";
+import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 
 
 
 export default function Home() {
+  const { data: popularProductsData } = useQuery<ApiResponseType<ProductType>>({
+    queryKey: [getAllProductApiCall.name,'popular_product'],
+    queryFn: () => getAllProductApiCall({ populate: ["categories", "thumbnail"], filters: { is_popular: true } })
+  });
+
+  const { data:popularFruitProductsData } = useQuery<ApiResponseType<ProductType>>({ 
+    queryKey: [getAllProductApiCall.name,'popular_fruit'],
+    queryFn: () => getAllProductApiCall({ populate: ["categories", "thumbnail"], filters: { is_popular_fruit: true } })
+  })
+  
   
   return (
    <>
@@ -42,17 +56,17 @@ export default function Home() {
             <i className="swiper-nav-right icon-angle-small-right cursor-pointer bg-gray-100 p-2 rounded-full text-gray-500 hover:bg-green-200 hover:text-white text-[24px]"></i>
           </div>
           </div>
-        <SimpleProductSlider  nextEl={'.swiper-nav-right'} prevEl={'.swiper-nav-left'} sliderData={popularProducts}/>
-        </Section>
+{ popularProductsData &&  <SimpleProductSlider  nextEl={'.swiper-nav-right'} prevEl={'.swiper-nav-left'} sliderData={popularProductsDat}/>
+}        </Section>
 
-        <Section>
+       <Section>
         <div className="flex justify-between mb-[50px]">
           <h2 className="text-heading3 text-blue-300">Popular Fruits</h2>
           <div className="flex items-center gap-3">
 
           </div>
           </div>
-        <SimpleProductSlider nextEl={'.swiper-nav-right2'} prevEl={'.swiper-nav-left2'} sliderData={popularFruits}/>
+        {popularFruitProductsData && <SimpleProductSlider nextEl={'.swiper-nav-right2'} prevEl={'.swiper-nav-left2'} sliderData={popularFruitProductsData.data}/>}
         </Section>
 
         <Section>
@@ -71,7 +85,7 @@ export default function Home() {
           </div>    
 
         </Section>
-
+ {/* 
       <Section>
          <div className="flex justify-between items-center mb-[50px]">
           <h2 className="text-heading6 md:text-heading5 lg:text-heading4 xl:text-heading3 text-blue-300">Deals Of The Days</h2>
@@ -84,7 +98,7 @@ export default function Home() {
       
       <Section>       
         <BottomSlider sliderData={TopSellingMock}/>
-      </Section>
+      </Section> */}
      
      </>
   );
