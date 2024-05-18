@@ -10,12 +10,12 @@ interface Props{
   data:EntityType<ProductType>
 }
 
+export function SimpleProductCard({ data }: Props) {
 
-export function SimpleProductCard({data}: Props) {
   return (
     <div className="group border-[1px] border-gray-200 hover:border-green-150 rounded-[10px] hover:shadow-[20px_20px_40px_0_rgba(24,24,24,0.07)] relative p-3 md:p-4 xl:px-5 xl:pb-5 lg:pt-[65px] h-full">
-        <div className="badge badge--off absolute left-0 top-0 lg:top-5 rounded-tl-[10px] lg:rounded-tl-none">...</div>
-‹
+        <div className="badge badge--off absolute left-0 top-0 lg:top-5 rounded-tl-[10px] lg:rounded-tl-none">{data.attributes.label}</div>
+
       
       {data.attributes.label && <Badge badge={data.attributes.label} price={data.attributes.price} sale_price={data.attributes.sell_price} />}
       

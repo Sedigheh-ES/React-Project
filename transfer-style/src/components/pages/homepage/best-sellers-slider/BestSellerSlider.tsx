@@ -1,10 +1,12 @@
 import { SimpleProductCard } from "@/components/common";
+import { EntityType } from "@/types";
+import { ProductType } from "@/types/api/Product";
 import { Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 
 interface Props{
-  sliderData: Array<any>;
+  sliderData: Array<EntityType<ProductType>>
   
 }
 

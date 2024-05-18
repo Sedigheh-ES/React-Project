@@ -1,25 +1,17 @@
+import { ApiResponseType } from "@/types";
 import apiClient from "./config/ApiClient";
+import { ProductType } from "@/types/api/Product";
 
 interface Props{
     populate?: Array<"categories" | "thumbnail" | "gallery">,
-    filters?: {
-        is_popular?: boolean;
-        is_popular_fruit?:boolean
-    }
+    filters?: {}
 }
 
 interface Filters{
     is_popular?: { $eq: boolean }
 }
-export function getAllProductApiCall({ populate, filters }: Props) {
-    const customFilter:Filters = {};
+export function getAllProductApiCall({ populate, filters }: Props):Promise<ApiResponseType<ProductType>> {
 
-    if (filters?.is_popular) {
-        customFilter.is_popular = { $eq:filters.is_popular };
-    }
-    if (filters?.is_popular_fruit) {
-        customFilter.is_popular = { $eq:filters.is_popular_fruit };
-    }
     return apiClient.get('/products', {
         params: {
             populate: populate?.join(','),

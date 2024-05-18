@@ -17,15 +17,27 @@ import Link from "next/link";
 export default function Home() {
   const { data: popularProductsData } = useQuery<ApiResponseType<ProductType>>({
     queryKey: [getAllProductApiCall.name,'popular_product'],
-    queryFn: () => getAllProductApiCall({ populate: ["categories", "thumbnail"], filters: { is_popular: true } })
+    queryFn: () => getAllProductApiCall({ populate: ["categories", "thumbnail"], filters: { is_popular: { $eq: true } } })
   });
 
   const { data:popularFruitProductsData } = useQuery<ApiResponseType<ProductType>>({ 
     queryKey: [getAllProductApiCall.name,'popular_fruit'],
-    queryFn: () => getAllProductApiCall({ populate: ["categories", "thumbnail"], filters: { is_popular_fruit: true } })
+  queryFn: () => getAllProductApiCall({ populate: ["categories", "thumbnail"], filters: { is_popular_fruit: { $eq: true } } })
   })
+
+   const { data:bestSellerProductData } = useQuery<ApiResponseType<ProductType>>({ 
+    queryKey: [getAllProductApiCall.name,'best_seller'],
+    queryFn: () => getAllProductApiCall({ populate: ["categories", "thumbnail"], filters: { is_best_seller: { $eq: true }} })
+   })
   
-  
+  const { data:dealsOfDayData } = useQuery<ApiResponseType<ProductType>>({ 
+    queryKey: [getAllProductApiCall.name,'deals_of_day'],
+    queryFn: () => getAllProductApiCall({ populate: ["categories", "thumbnail"], filters: {discount_expire_date: { $notNull: true } } })
+  });
+
+  console.log(dealsOfDayData);
+
+
   return (
    <>
         <Section>
@@ -56,7 +68,7 @@ export default function Home() {
             <i className="swiper-nav-right icon-angle-small-right cursor-pointer bg-gray-100 p-2 rounded-full text-gray-500 hover:bg-green-200 hover:text-white text-[24px]"></i>
           </div>
           </div>
-{ popularProductsData &&  <SimpleProductSlider  nextEl={'.swiper-nav-right'} prevEl={'.swiper-nav-left'} sliderData={popularProductsDat}/>
+{ popularProductsData &&  <SimpleProductSlider  nextEl={'.swiper-nav-right'} prevEl={'.swiper-nav-left'} sliderData={popularProductsData.data}/>
 }        </Section>
 
        <Section>
@@ -67,7 +79,8 @@ export default function Home() {
           </div>
           </div>
         {popularFruitProductsData && <SimpleProductSlider nextEl={'.swiper-nav-right2'} prevEl={'.swiper-nav-left2'} sliderData={popularFruitProductsData.data}/>}
-        </Section>
+      </Section>
+      
 
         <Section>
           <div className="flex justify-between mb-[50px]">
@@ -81,11 +94,16 @@ export default function Home() {
               <IconBox icon={"icon-arrow-small-right "} size={24} />
             </Link>
           </div>
-            <BestSellerSlider sliderData={BestSellers}/>
+          {bestSellerProductData &&
+            <div  className=" flex-grow">
+              <BestSellerSlider sliderData={bestSellerProductData.data} />
+            </div>
+          
+            }
           </div>    
 
         </Section>
- {/* 
+ 
       <Section>
          <div className="flex justify-between items-center mb-[50px]">
           <h2 className="text-heading6 md:text-heading5 lg:text-heading4 xl:text-heading3 text-blue-300">Deals Of The Days</h2>
@@ -93,9 +111,10 @@ export default function Home() {
             All Deals <IconBox icon={"icon-angle-small-right"} size={24}/>
           </Link>
         </div>
-      <DealsOfTheDay sliderData={DealsOfTheDaysMock} />
+     {dealsOfDayData && <DealsOfTheDay sliderData={dealsOfDayData.data} />}
       </Section>
-      
+
+      {/* 
       <Section>       
         <BottomSlider sliderData={TopSellingMock}/>
       </Section> */}
