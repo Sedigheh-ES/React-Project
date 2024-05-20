@@ -6,11 +6,13 @@ import { BestSellers } from "@/mock/bestSellers";
 import { DealsOfTheDaysMock } from "@/mock/DealsOfTheDayMock";
 import { popularFruits } from "@/mock/popularFruits";
 import { popularProducts } from "@/mock/popularProduct";
+import { TopRatedMock } from "@/mock/TopRated";
 import { TopSellingMock } from "@/mock/TopSelling";
 import { ApiResponseType } from "@/types";
 import { ProductType } from "@/types/api/Product";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
+
 
 
 
@@ -34,9 +36,6 @@ export default function Home() {
     queryKey: [getAllProductApiCall.name,'deals_of_day'],
     queryFn: () => getAllProductApiCall({ populate: ["categories", "thumbnail"], filters: {discount_expire_date: { $notNull: true } } })
   });
-
-  console.log(dealsOfDayData);
-
 
   return (
    <>
@@ -68,8 +67,9 @@ export default function Home() {
             <i className="swiper-nav-right icon-angle-small-right cursor-pointer bg-gray-100 p-2 rounded-full text-gray-500 hover:bg-green-200 hover:text-white text-[24px]"></i>
           </div>
           </div>
-{ popularProductsData &&  <SimpleProductSlider  nextEl={'.swiper-nav-right'} prevEl={'.swiper-nav-left'} sliderData={popularProductsData.data}/>
-}        </Section>
+         { popularProductsData &&  <SimpleProductSlider  nextEl={'.swiper-nav-right'} prevEl={'.swiper-nav-left'} sliderData={popularProductsData.data}/>
+            }
+      </Section>
 
        <Section>
         <div className="flex justify-between mb-[50px]">
@@ -114,10 +114,10 @@ export default function Home() {
      {dealsOfDayData && <DealsOfTheDay sliderData={dealsOfDayData.data} />}
       </Section>
 
-      {/* 
+      
       <Section>       
-        <BottomSlider sliderData={TopSellingMock}/>
-      </Section> */}
+        <BottomSlider sliderData={TopRatedMock}/>
+      </Section>
      
      </>
   );
