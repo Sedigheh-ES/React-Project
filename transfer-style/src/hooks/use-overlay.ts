@@ -1,10 +1,11 @@
 import { useEffect } from "react";
 
 interface Props{
-    onClick:() => void;
+  onClick: () => void;
+  isOverFlowHidden:boolean
 }
 
-export function useOverlay({onClick}:Props) {
+export function useOverlay({onClick,isOverFlowHidden= false }:Props) {
      useEffect(() => {
     const clickHandler = () => {
       onClick()

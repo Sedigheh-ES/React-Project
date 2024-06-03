@@ -1,23 +1,40 @@
 import { IconBox, ImageView, Logo } from "@/components/common";
+import LoginModal from "@/components/common/auth/LoginModal";
 import Link from "next/link";
+import { useState } from "react";
+import { Portal } from "@/components/common";
+import RegisterModal from "@/components/common/auth/RegisterModal";
 
 export function Footer() {
-    // TODO fix Mobile Menu
+  // TODO fix Mobile Menu
+  const [showModal, setShowModal] = useState<  "login" | "register" | null >(null);
+ 
+
+  const onCloseHandler = () => {
+    setShowModal(null);
+  }
     return ( 
       
-        <footer className="container mb-[68px]">
+      <footer className="container mb-[68px] relative">
+        
+        
 
-        <div className="rounded-[6px] md:rounded-[14px] lg:rounded-[30px] bg-hero-pattern bg-[rgba(59,128,126,.2)] bg-opacity-20 bg-cover bg-top bg-no-repeat flex justify-between items-center my-[38px] relative">
+        <div  className="mb-[68px]">
+
+  
+        <div className="rounded-[6px] m}d:rounded-[14px] lg:rounded-[30px] bg-hero-pattern bg-[rgba(59,128,126,.2)] bg-opacity-20 bg-cover bg-top bg-no-repeat flex justify-between items-center my-[38px] relative">
         <div className="min-h-[160px] pl-3 pt-3 sm:pl-4 sm:pt4 md:pl-6 md:pt-6 lg:pl-10 lg:py-10 xl:pl-14 xl:py-14 2xl:py-[72px] 2xl:pl-[72px]">
           <h2 className="max-w-[60%] font-quickSand text-heading5 sm:text-heading4 md:text-heading3 lg:text-heading2 tracking-[-0.04%] text-blue-300">Stay home & get your daily needs from our shop</h2>
           <div className="font-lato text-large tracking-[-0.04%] text-[#2B3D34] mt-8 hidden lg:block">Start Your Daily Sopping with Nest Mart</div>
         </div>
                 <ImageView src={"/assets/images/Screenshot (76).png"} width={587} height={331} className={"absolute bottom-0 right-0 sm:h-full h-3/4"} alt={"Footer Banner" } />
        </div>  
-      
+        </div>
+        
       <div className="flex flex-col md:flex-row justify-between flex-wrap gap-[16px] divide-y-2 md:divide-y-0 mb-[70px]">
         <div className="max-w-[346px]">
-        <Logo/>
+            <Logo />
+            
           <div className="font-lato text-medium mt-4 lg:mt-6">Pellentesque posuere orci lobortis</div>
                     <div className="flex items-start gap-2.5 mt-4 lg:mt-6">
                         <IconBox icon={"icon-marker-brand"} />

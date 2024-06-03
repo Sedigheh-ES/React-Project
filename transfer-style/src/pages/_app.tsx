@@ -47,6 +47,7 @@ export default function App({ Component, pageProps }: AppProps) {
       </style>
     
       <QueryClientProvider client={queryCLient}>
+        <div id={"portal"}></div>
        <Layout>
           <Component {...pageProps} />
           <ToastContainer autoClose={false} hideProgressBar={false} closeOnClick={true} draggable={false} />
