@@ -2,17 +2,17 @@ import { IconBox, Logo, Modal } from "@/components/common/ui"
 import Link from "next/link";
 import { SearchBox } from "./search-form";
 import { Menu } from "./menu";
-import { useEffect, useState,MouseEvent } from "react";
+import { useEffect, useState,MouseEvent, useContext } from "react";
 import { useOverlay } from "@/hooks/use-overlay";
 import LoginModal from "@/components/common/auth/LoginModal";
 import RegisterModal from "@/components/common/auth/RegisterModal";
+import { useModal } from "@/store/ModalContext";
 
 
 export function Header() {
   const [showMobileMenu, setShowMobileMenu] = useState<boolean>(false);
    
-
-
+  const {currentModal , openModal,closeModal } = useModal();
 
   const menuBtnClickHandler = (e: MouseEvent) => {
     e.stopPropagation();
@@ -27,7 +27,8 @@ export function Header() {
   useOverlay({
     onClick: () => {
       setShowMobileMenu(false)
-    }
+    },
+    isOverFlowHidden: showMobileMenu
   });
 
 
@@ -46,15 +47,12 @@ export function Header() {
   }, [showMobileMenu]);
 
 
-  const [showModal, setShowModal] = useState<  "login" | "register" | null >(null);
-  const onCloseHandler = () => {
-    setShowModal(null);
-  }
+  
 
     return ( 
       <header className="mb-[33px]">
-       {showModal  === "login" && <LoginModal onClose={onCloseHandler} setShowModal={setShowModal} />}
-        {showModal === "register" && <RegisterModal onClose={onCloseHandler} />}
+       {currentModal  === "login" && <LoginModal onClose={closeModal}  />}
+        {currentModal === "register" && <RegisterModal onClose={closeModal} />}
 
 
       <div  className=" container flex items-center justify-between py-4 md:py-6 xl:py-8">
@@ -65,7 +63,7 @@ export function Header() {
                     </div>
         
                 <ul className="hidden lg:flex gap-5">
-                    <li onClick={() => setShowModal("login")}  className="flex gap-2 cursor-pointer" >
+                    <li onClick={() => openModal("login")}  className="flex gap-2 cursor-pointer" >
                         <IconBox icon={"icon-user"} size={24} title={"Account"} HideTitleOnMobile={true} link={'#'} titleClassName={"text-medium text-gray-500 font-lato"} />                     
                     </li>
                     <li className="flex gap-2 cursor-pointer">
