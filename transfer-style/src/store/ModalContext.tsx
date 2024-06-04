@@ -1,4 +1,4 @@
-import { ReactNode, useContext, useState } from "react";
+import { ReactNode, useContext, useEffect, useState } from "react";
 import { createContext } from "react";
 
 interface Props { 
@@ -21,6 +21,17 @@ export const useModal = () =>useContext(ModalContext);
 
 export function ModalContextProvider({ children }: Props) {
   const [showModal, setShowModal] = useState<ModalType>(null);
+
+
+  useEffect(() => {
+   
+    const hash = window.location.hash.substring(1);
+    if (hash.includes('-modal')) {
+      const modalName = hash.split('-')[0] as ModalType;
+      setShowModal(modalName);
+    }
+    
+  }, []);
   
   const openModal = (ModalName: ModalType) => {
     setShowModal(ModalName);    
