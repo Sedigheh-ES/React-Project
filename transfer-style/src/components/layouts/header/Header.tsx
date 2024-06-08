@@ -7,9 +7,12 @@ import { useOverlay } from "@/hooks/use-overlay";
 import LoginModal from "@/components/common/auth/LoginModal";
 import RegisterModal from "@/components/common/auth/RegisterModal";
 import { useModal } from "@/store/ModalContext";
+import { useUser } from "@/store/AuthContext";
+import { toast } from "react-toastify";
 
 
 export function Header() {
+  const { isLogin , logout} = useUser();
   const [showMobileMenu, setShowMobileMenu] = useState<boolean>(false);
    
   const {currentModal , openModal,closeModal } = useModal();
@@ -41,13 +44,18 @@ export function Header() {
     }
     return () => {
       document.body.style.overflowY = 'auto';
-    }
-
-    
+    }   
   }, [showMobileMenu]);
 
 
-  
+  const accountHandler = () => {
+    if (isLogin) {
+      logout();
+      toast.success('شما با موفقیت از اکانت خود خارج شدید')
+    } else {
+      openModal('login');
+    }
+  }
 
     return ( 
       <header className="mb-[33px]">
@@ -63,8 +71,8 @@ export function Header() {
                     </div>
         
                 <ul className="hidden lg:flex gap-5">
-                    <li onClick={() => openModal("login")}  className="flex gap-2 cursor-pointer" >
-                        <IconBox icon={"icon-user"} size={24} title={"Account"} HideTitleOnMobile={true} link={'#'} titleClassName={"text-medium text-gray-500 font-lato"} />                     
+                    <li onClick={() => {accountHandler()}}  className="flex gap-2 cursor-pointer" >
+                        <IconBox icon={"icon-user"} size={24} title={`${isLogin ? 'logout' : 'login/register' }`} HideTitleOnMobile={true} link={'#'} titleClassName={"text-medium text-gray-500 font-lato"} />                     
                     </li>
                     <li className="flex gap-2 cursor-pointer">
                          <IconBox  icon={"icon-shopping-cart"} size={24} title={"Card"} HideTitleOnMobile={true} link={'#'}  badge={4} titleClassName={"text-medium text-gray-500 font-lato"}/>                    
@@ -100,7 +108,7 @@ export function Header() {
                     
                     
           <ul className="flex gap-5">
-                     <li className="flex gap-2 cursor-pointer"  onClick={() => setShowModal("login")}>
+                     <li className="flex gap-2 cursor-pointer"  onClick={() => setShowMobileMenu(true)}>
                         <IconBox icon={"icon-user"} size={24} title={"Account"} HideTitleOnMobile={false} link={'#'} titleClassName={"text-medium text-gray-500 font-lato"} />                     
                     </li>
                     <li className="flex gap-2 cursor-pointer">
