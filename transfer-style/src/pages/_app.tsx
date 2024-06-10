@@ -13,6 +13,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ToastContainer } from "react-toastify";
 import { ModalContextProvider } from "@/store/ModalContext";
 import { AuthContextProvider } from "@/store/AuthContext";
+import { BasketContext, BasketContextProvider } from "@/store/BasketContext";
 
 const queryCLient = new QueryClient({
   defaultOptions: {
@@ -50,6 +51,7 @@ export default function App({ Component, pageProps }: AppProps) {
     
     
       <QueryClientProvider client={queryCLient}>
+        <BasketContextProvider>
        <AuthContextProvider>
         <ModalContextProvider>
         <div id={"portal"}></div>
@@ -58,7 +60,8 @@ export default function App({ Component, pageProps }: AppProps) {
           <ToastContainer autoClose={false} hideProgressBar={false} closeOnClick={true} draggable={false} />
           </Layout>
           </ModalContextProvider>
-         </AuthContextProvider>
+          </AuthContextProvider>
+          </BasketContextProvider>
         </QueryClientProvider>
    
       </>
