@@ -1,0 +1,105 @@
+import { EntityType } from "@/types";
+import { ProductType } from "@/types/api/Product";
+import { Children, ReactNode, createContext, useState } from "react";
+
+interface Props {
+    children: ReactNode;
+}
+
+interface ProductItem{
+    productId: number;
+    title: string;
+    price: number;
+    img: string;
+    quantity: number;
+}
+
+export const BasketContext = createContext<{
+     basketItems: Array<ProductItem>,
+    addItem: (product:EntityType<ProductType>) =>  void,
+    increaseItem: (productId: number) => void,
+    decreaseItem: (productId: number) => void,
+    deleteItem: (productId: number) => void,
+     getItem:(productId:number) => undefined | ProductItem
+ }>({
+    basketItems: [],
+    addItem: (product:EntityType<ProductType>) => {},
+    increaseItem: (productId: number) => { },
+    decreaseItem: (productId: number) => { },
+     deleteItem: (productId: number) => { },
+    getItem:(productId:number) => undefined
+    
+
+});
+
+export const BasketContextProvider = (props: Props) => {
+    const [basketItem, setBasketitem] = useState<Array<ProductItem>>([]);
+
+    const addItemHandler = (product: EntityType<ProductType>) => {
+        const newProduct : ProductItem = {
+            productId: product.id,
+            title: product.attributes.title,
+            img: product.attributes.thumbnail?.data?.attributes.url,
+            price: product.attributes.price,
+            quantity:1     
+        }
+        setBasketitem(prevState => [
+            ...prevState,
+            newProduct
+        ])
+    
+
+     }
+    
+    const increasetItemHandler = (productId: number) => {
+        const newBasket = basketItem.map((item) => {
+            if (item.productId === productId)
+                return { ...item, quantity: item.quantity + 1 }
+            return item;
+            
+        });
+          setBasketitem(newBasket);
+       
+    }
+
+    const decreamentItemHandler = (productId: number) => {
+
+        const currentProduct = basketItem.find((item) => item.productId === productId);
+        if (currentProduct && currentProduct.quantity === 1) {
+            const newBasket = basketItem.filter((item) => item.productId != productId);
+            setBasketitem(newBasket)
+        } else {
+            
+            const newBasket = basketItem.map((item) => {
+            if (item.productId === productId)
+                return { ...item, quantity: item.quantity - 1 }
+            return item;
+            
+        });
+         setBasketitem(newBasket);
+        }
+    
+      
+        
+    }
+
+    const deleteItemHandler = (productId: number) => {
+        const newBasket = basketItem.filter((item) => item.productId !== productId);
+        setBasketitem(newBasket);
+        
+    }
+
+    
+
+const getItemHandler = (productId: number):ProductItem | undefined => {
+
+    return basketItem.find((item) => item.productId === productId);
+        
+    }
+    
+    return (
+        <BasketContext.Provider value={{basketItems: basketItem, getItem:getItemHandler , addItem:addItemHandler , increaseItem: increasetItemHandler , decreaseItem:decreamentItemHandler, deleteItem:deleteItemHandler }}  >
+            {props.children}
+        </BasketContext.Provider>
+    )
+}

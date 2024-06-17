@@ -1,5 +1,5 @@
 import axios from "axios";
-import { promises } from "dns";
+
 import { toast } from "react-toastify";
 
 const apiClient = axios.create({
@@ -8,6 +8,15 @@ const apiClient = axios.create({
     
 });
 export default apiClient;
+
+apiClient.interceptors.request.use(function(request){
+    const token = window.localStorage.getItem('token');
+    if (token) {
+        request.headers.Authorization ="Bearer " + token;
+    }
+    return request;
+}
+)
 
 apiClient.interceptors.response.use(function (response) {
     return response.data;

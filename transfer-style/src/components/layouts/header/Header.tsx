@@ -9,9 +9,14 @@ import RegisterModal from "@/components/common/auth/RegisterModal";
 import { useModal } from "@/store/ModalContext";
 import { useUser } from "@/store/AuthContext";
 import { toast } from "react-toastify";
+import { BasketContext } from "@/store/BasketContext";
+import { useBasket } from "@/hooks/use-basket";
 
 
 export function Header() {
+  const { basketItems } = useBasket();
+  console.log('basket Items:', basketItems);
+  //const basket = useContext(BasketContext);
   const { isLogin , logout} = useUser();
   const [showMobileMenu, setShowMobileMenu] = useState<boolean>(false);
    
@@ -75,7 +80,7 @@ export function Header() {
                         <IconBox icon={"icon-user"} size={24} title={`${isLogin ? 'logout' : 'login/register' }`} HideTitleOnMobile={true} link={'#'} titleClassName={"text-medium text-gray-500 font-lato"} />                     
                     </li>
                     <li className="flex gap-2 cursor-pointer">
-                         <IconBox  icon={"icon-shopping-cart"} size={24} title={"Card"} HideTitleOnMobile={true} link={'#'}  badge={4} titleClassName={"text-medium text-gray-500 font-lato"}/>                    
+                         <IconBox  icon={"icon-shopping-cart"} size={24} title={"Card"} HideTitleOnMobile={true} link={'#'}  badge={basketItems.length} titleClassName={"text-medium text-gray-500 font-lato"}/>                    
                    </li>
                 </ul>
                 
