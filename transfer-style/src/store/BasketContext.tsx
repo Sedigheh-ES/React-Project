@@ -16,27 +16,28 @@ interface ProductItem{
 }
 
 export const BasketContext = createContext<{
-     basketItems: Array<ProductItem>,
-    addItem: (product:EntityType<ProductType>) =>  void,
+    basketItems: Array<ProductItem>,
+    addItem: (product: EntityType<ProductType>) => void,
     increaseItem: (productId: number) => void,
     decreaseItem: (productId: number) => void,
     deleteItem: (productId: number) => void,
-     getItem:(productId:number) => undefined | ProductItem
- }>({
+    getItem: (productId: number) => undefined | ProductItem
+}>({
     basketItems: [],
-    addItem: (product:EntityType<ProductType>) => {},
+    addItem: (product: EntityType<ProductType>) => { },
     increaseItem: (productId: number) => { },
     decreaseItem: (productId: number) => { },
-     deleteItem: (productId: number) => { },
-    getItem:(productId:number) => undefined
+    deleteItem: (productId: number) => { },
+    getItem: (productId: number) => undefined
     
 
- })
+});
 
-type Action = { type: "ADD_ITEM", product: EntityType<ProductType> }
+export type Action =  { type: "ADD_ITEM", product: EntityType<ProductType> }
             | { type: "INCREASE_ITEM", productId: number }
             | { type:"DECREASEE_ITEM", productId: number }
-            | { type:"DELETE_ITEM", productId: number }
+            | { type: "DELETE_ITEM", productId: number }
+        
 
 const basketReducer = (currentState: ProductItem[], action:Action) => {
     switch (action.type) {
@@ -80,15 +81,15 @@ const basketReducer = (currentState: ProductItem[], action:Action) => {
     }
      
  }
-
+    
 export const BasketContextProvider = (props: Props) => {
     // const [basketItem, setBasketitem] = useState<Array<ProductItem>>([]);
 
-    const [basketItems, dispatch] = useReducer( basketReducer, [ ]);
+const [basketItems, dispatch] = useReducer( basketReducer, []);
    
 
     const addItemHandler = (product: EntityType<ProductType>) => {
-        dispatch({ type: "ADD_ITEM", product: product });
+        dispatch( {type: "ADD_ITEM", product: product});
 
      }
     
@@ -117,7 +118,7 @@ const getItemHandler = (productId: number):ProductItem | undefined => {
     }
     
     return (
-        <BasketContext.Provider value={{basketItems: basketItems, getItem:getItemHandler , addItem:addItemHandler, increaseItem:increasetItemHandler, decreaseItem:decreamentItemHandler, deleteItem:decreamentItemHandler }}  >
+        <BasketContext.Provider value={{basketItems: basketItems, getItem:getItemHandler , addItem:addItemHandler, increaseItem:increasetItemHandler, decreaseItem:decreamentItemHandler, deleteItem:deleteItemHandler }}  >
             {props.children}
         </BasketContext.Provider>
     )

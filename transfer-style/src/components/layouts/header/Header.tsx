@@ -15,7 +15,8 @@ import { useBasket } from "@/hooks/use-basket";
 
 export function Header() {
   const { basketItems } = useBasket();
-  console.log('basket Items:', basketItems);
+  console.log("basket-items:", basketItems);
+  
   //const basket = useContext(BasketContext);
   const { isLogin , logout} = useUser();
   const [showMobileMenu, setShowMobileMenu] = useState<boolean>(false);
