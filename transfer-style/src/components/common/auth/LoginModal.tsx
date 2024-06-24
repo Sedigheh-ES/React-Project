@@ -7,6 +7,7 @@ import { useMutation } from "@tanstack/react-query";
 import { useUser } from "@/store/AuthContext";
 import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
+import { useBasket } from "@/hooks/use-basket";
 
 interface Props {
   onClose: () => void
@@ -19,6 +20,8 @@ interface formData{
 
 function LoginModal({ onClose }: Props) {
   const { openModal, closeModal } = useModal();
+
+  const {uuid2user} = useBasket();
 
   const {login} = useUser();
 
@@ -33,6 +36,7 @@ function LoginModal({ onClose }: Props) {
         login(response.jwt, response.user);
         toast.success('شما با  موفقیت لاگین شدید');
         closeModal();
+        uuid2user();
     }});
     
   }
