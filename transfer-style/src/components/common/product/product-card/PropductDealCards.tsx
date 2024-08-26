@@ -60,7 +60,7 @@ export function PropductDealCards({ data }: Props) {
                   <div className="text-heading-sm text-blue-300">{data.attributes.title}</div>
                     <div className="flex w-[106px] justify-between h-4 items-center mt-1">
             <div className="flex gap-4">
-              <Rating rate={data.attributes.rate} />
+              <Rating rate={data.attributes.rate}/>
                     
                       </div>
                     </div>
